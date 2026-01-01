@@ -1,11 +1,16 @@
 {
-  "files": [],
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "skipLibCheck": true
   },
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
-  "include": ["src", "src/types"],
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.d.ts"
+  ]
 }
