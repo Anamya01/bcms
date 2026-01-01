@@ -1,16 +1,16 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -28,6 +28,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  font-feature-settings: "liga" 0, "calt" 0;
 }
 
 h1 {
@@ -53,6 +57,37 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+.ce-paragraph {
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ce-block {
+  margin-bottom: 0.75em;
+}
+.ce-block {
+  transition:
+    margin 120ms ease-out,
+    padding 120ms ease-out;
+}
+.ce-paragraph {
+  caret-color: red;
+  caret-shape: underscore;
+}
+
+/* Editor typography */
+.ce-editor,
+.ce-block,
+.ce-paragraph {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 15px;
+  line-height: 1.6;
+
+  /* Critical for smooth typing */
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+
 
 @media (prefers-color-scheme: light) {
   :root {

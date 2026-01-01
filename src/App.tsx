@@ -1,9 +1,10 @@
 import './App.css'
+import { AppShell } from './app/app.shell';
 
 function App() {
 
   return (
-    <>Hi There</>
+    <AppShell />
   )
 }
 
