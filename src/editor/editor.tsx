@@ -5,6 +5,9 @@ import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import Paragraph from "@editorjs/paragraph";
 import ImageTool from "@editorjs/image";
+import Code from "@editorjs/code";
+import Embed from "@editorjs/embed";
+import Marker from "@editorjs/marker";
 import { imageStorage } from "../storage/image.storage";
 
 type Props = {
@@ -12,6 +15,8 @@ type Props = {
   readOnly: boolean;
   onChange: (data: OutputData) => void;
 };
+
+/* ---------------- Image rehydration ---------------- */
 
 async function rehydrateImages(data: OutputData): Promise<OutputData> {
   const blocks = await Promise.all(
@@ -42,6 +47,8 @@ async function rehydrateImages(data: OutputData): Promise<OutputData> {
   return { ...data, blocks };
 }
 
+/* ---------------- Editor component ---------------- */
+
 export function Editor({ data, readOnly, onChange }: Props) {
   const editorRef = useRef<EditorJS | null>(null);
   const holderRef = useRef<HTMLDivElement>(null);
@@ -63,10 +70,49 @@ export function Editor({ data, readOnly, onChange }: Props) {
         holder: holderRef.current,
         data: preparedData,
         readOnly,
+        inlineToolbar: true,
+
         tools: {
-          header: Header,
-          list: List,
-          paragraph: Paragraph,
+          paragraph: {
+            class: Paragraph,
+            inlineToolbar: true,
+          },
+
+          header: {
+            class: Header,
+            inlineToolbar: true,
+            config: {
+              levels: [2, 3, 4],
+              defaultLevel: 2,
+            },
+          },
+
+          list: {
+            class: List,
+            inlineToolbar: true,
+          },
+
+          marker: {
+            class: Marker,
+            shortcut: "CMD+SHIFT+M",
+          },
+
+          code: {
+            class: Code,
+          },
+
+          embed: {
+            class: Embed,
+            config: {
+              services: {
+                youtube: true,
+                twitter: true,
+                codepen: true,
+                github: true,
+              },
+            },
+          },
+
           image: {
             class: ImageTool,
             config: {
@@ -90,8 +136,10 @@ export function Editor({ data, readOnly, onChange }: Props) {
         },
         async onChange() {
           if (readOnly || !editor) return;
+
           const output = await editor.save();
           onChange(output);
+
         },
       });
 
@@ -100,10 +148,7 @@ export function Editor({ data, readOnly, onChange }: Props) {
 
     return () => {
       cancelled = true;
-      if (
-        editorRef.current &&
-        typeof editorRef.current.destroy === "function"
-      ) {
+      if (editorRef.current && typeof editorRef.current.destroy === "function") {
         editorRef.current.destroy();
       }
       editorRef.current = null;

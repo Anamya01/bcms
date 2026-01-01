@@ -2,6 +2,7 @@ import type { Post } from "../types/post";
 import { Editor } from "../editor/editor";
 import { useDebouncedCallback } from "../shared/useDebouncedCallback";
 import { useRef } from "react";
+import back from "../assets/arrow-left.svg"
 
 type Props = {
   post: Post;
@@ -11,7 +12,7 @@ type Props = {
 
 export function EditorPage({ post, onChange, onClose }: Props) {
   const lastSavedRef = useRef<string>("");
-
+  
   const debouncedSave = useDebouncedCallback((updatedPost: Post) => {
     onChange(updatedPost);
     lastSavedRef.current = JSON.stringify(updatedPost.content);
@@ -40,14 +41,18 @@ export function EditorPage({ post, onChange, onClose }: Props) {
     debouncedSave(updatedPost);
   }
   return (
-    <div>
-      <button onClick={onClose}>Back</button>
+    <div className="editor-page">
+      <div className="header">
+      <span onClick={onClose}>
+        <img src={back} />
+      </span>
 
       <input
         value={post.title}
         onChange={updateTitle}
         placeholder="Post title"
       />
+      </div>
 
       <Editor data={post.content} readOnly={post.published} onChange={updateContent} />
     </div>

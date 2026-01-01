@@ -1,0 +1,99 @@
+.post-list-page{
+ min-height: 100vh;
+ min-width: 50vw;
+ padding: 10px;
+ text-align: left;
+}
+.post-lists{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 10px;
+    gap: 20px;
+}
+.post-lists li{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    transition: all .8s ease-out;
+    border-radius: 2px;
+}
+.post-lists li:hover{
+    background-color: #272829;
+}
+.title{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.controls{
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+span{
+    cursor: pointer;
+}
+.controls span{
+    width: 15px;
+    height: 30px;
+}
+.controls span img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#addPosts{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.editor-page{
+    min-height: 100vh;
+    min-width: 50vw;
+    text-align: left;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.editor-page input{
+    text-align:right;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    color: #B6F500;
+}
+.editor-page input:focus{
+    outline: none;
+}
+.editor-page input::placeholder{
+    color: azure;
+}
+.editor-page .header{
+    border-bottom: 4px solid #B6F500;
+    margin-bottom: 20px;
+}
+.editor-page::selection{
+    color: black;
+}

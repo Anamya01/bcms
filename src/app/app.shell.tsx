@@ -84,6 +84,18 @@ export function AppShell() {
     window.location.hash = "";
     setScreen({ name: "list" });
   }
+  
+  function deletePost(postId: string) {
+    const ok = window.confirm("Delete this post? This cannot be undone.");
+    if (!ok) return;
+  
+    setPosts((prev) => prev.filter((p) => p.id !== postId));
+    localPostStorage.delete(postId);
+  
+    // Safety: if user deletes the currently open post
+    setScreen({ name: "list" });
+  }
+
 
   const activePost =
     screen.name !== "list"
@@ -99,6 +111,7 @@ export function AppShell() {
           onOpen={openEditor}
           onTogglePublish={togglePublish}
           onExport={exportPost}
+          onDelete={deletePost}
         />
       )}
 
